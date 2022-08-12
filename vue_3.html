@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>v-if If Statements</title>
+		<meta charset="UTF-8">
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<style>
+			.special {background:yellow; border: 1px dotted #fe0000; padding:30px; display:block; text-align:center;}
+			.important {font-weight:bold; font-size:30px;}
+			.card {
+        display: block;
+        width: 300px;
+        background: #f5f5f5;
+        border-radius: 10px;
+        padding-bottom: 20px;
+      }
+      .card img {
+        width: 100%;
+        border-radius: 10px;
+      }
+      figure {
+        padding: 20px;
+        margin: 0;
+        margin-block: 0;
+      }
+      figcaption, h2, p { 
+        text-align: center;
+        margin: 10px 0;
+        margin-block: 0;
+      }
+		</style>
+		</style>
+	</head>
+	<body>
+	
+		<div id="app">
+			<span v-if="profile" class="card">
+				<figure>
+			<img v-if="profile.image" :src="profile.image" :alt="`Profile Image of ${profile.fname} ${profile.lname}`">
+			<img v-else src="https://www.w3schools.com/howto/img_avatar.png" alt="Generic Image of Man in Suit">
+			<figcaption v-if="profile.fname && profile.lname">Image of {{profile.fname}} {{profile.lname}}</figcaption>
+			<figcaption v-else-if="profile.fname && !profile.lname">Image of {{profile.fname}} (last name unknown)</figcaption>
+			<figcaption v-else>Unknown name of person in image</figcaption>
+		  </figure>
+		  <h2 v-if="profile.desc">{{profile.desc}}</h2>
+		  <h2 v-else>Unknown Profession</h2>
+		  <p v-if="profile.bio">{{profile.bio}}</p>
+			</span>
+			<span v-else>
+				No Profile Data found.
+			</span>
+		</div>
+	
+	<script>
+		var app = new Vue({
+			el: '#app',
+			
+			data:{
+				profile:{
+					fname: "Elliot",
+					lname: null,
+			desc: "Back-End Developer",
+			bio: null,
+			image: "https://images.unsplash.com/photo-1463453091185-61582044d556?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+				}
+			}
+			
+		});
+	</script>
+	
+		<!--
+		//step 1: Read Code Above
+		//step 2: Does the profile show up?
+		
+		v-if="boolean_expression"
+		v-else-if="boolean_expression"
+		v-else
+		
+		
+		You can code an if, else if, else statement into your render using the v-if, v-else-if, v-else.
+		Just like in regular programming, v-else has no condition
+		
+		Notice how the "profile" object is null. Reminder that null is Falsey in the boolean context.
+		
+		ASYNCHRONOUS LEARNING EXERCISE
+		1. Use the profile object to store information about yourself {fname, lname, desc, bio, pic}
+		2. Create a figure, figcaption, and image markup which acts as a description for yourself
+			(Something like this https://www.w3schools.com/howto/howto_css_cards.asp)
+		3. Write conditionals if information is missing (i.e. 'no bio available' if bio is blank, generic image if no pic is found)
+		-->
+	</body>
+</html>
